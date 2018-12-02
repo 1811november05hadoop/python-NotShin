@@ -79,6 +79,42 @@ def main():
 	print(armstrong(100))
 	print(armstrong(9474))
 
+	print("\nQuestion 6")
+	print("----------")
+	print(primeFactors(2))
+	print(primeFactors(9))
+	print(primeFactors(8))
+	print(primeFactors(12))
+	print(primeFactors(901255))
+
+	print("\nQuestion 7")
+	print("----------")
+	print(pangram(""))
+	print(pangram("abcdefghijklmnopqrstuvwxyz"))
+	print(pangram("the quick brown fox jumps over the lazy dog"))
+	print(pangram("a quick movement of the enemy will jeopardize five gunboats"))
+	print(pangram("five boxing wizards jump quickly at it"))
+
+	print("\nQuestion 8")
+	print("----------")
+	print(sort([]))
+	print(sort([2,4,5,1,3,1]))
+	print(sort([89,144,634,8,34,21,1,3,233,55,5,377,13]))
+	print(sort([4,6,3,9,11,3,1,8]))
+	print(sort([48,86,52,46,34,95,76,83,48,66,83,41,52,47,80,10,51,49,20,1]))
+
+	print("\nQuestion 9")
+	print("----------")
+	print(rotate(13, "n"))
+	print(rotate(5, "OMG"))
+	print(rotate(4, "Testing 1 2 3 testing"))
+	print(rotate(21, "Let's eat, Grandma!"))
+	print(rotate(13, "Gur dhvpx oebja sbk whzcf bire gur ynml qbt."))
+
+	print("\nQuestion 10")
+	print("----------")
+	evenAndOdds()
+
 '''
 1. Reverse a String. Example: reverse("example"); -> "elpmaxe"
 
@@ -160,8 +196,16 @@ Note that 1 is not a prime number.
 param: int
 return: list
 '''
-#def primeFactors(number: int)
-
+def primeFactors(number: int):
+	factors = []
+	factor = 2
+	while(number != 1):
+		if(number % factor == 0):
+			factors.append(factor)
+			number //= factor
+		else:
+			factor += 1
+	return factors
 '''
 7. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
 gramma, "every letter") is a sentence using every letter of the alphabet at
@@ -175,8 +219,11 @@ insensitive. Input will not contain non-ASCII symbols.
 param: str
 return: bool
 '''
-#def pangram(sentence):
-
+def pangram(sentence : str):
+	for x in range(97, 123):
+		if chr(x) not in sentence.strip(" ").lower():
+			return False
+	return True
 '''
 8. Sort list of integers.
 f([2,4,5,1,3,1]) = [1,1,2,3,4,5]
@@ -188,8 +235,12 @@ Rules:
 param: list
 return: list
 '''
-#def sort(numbers):
-
+def sort(numbers: list):
+	sortedList = []
+	while(len(numbers) != 0):
+		sortedList.append(min(numbers))
+		numbers.remove(min(numbers))
+	return sortedList
 '''
 9. Create an implementation of the rotational cipher, also sometimes called
 the Caesar cipher.
@@ -219,8 +270,16 @@ quick brown fox jumps over the lazy dog.
 param: int, str
 return: str
 '''
-#def rotate(key, string):
-
+def rotate(key: int, string: str):
+	ciphertext = ""
+	for c in string:
+		if ord(c) >= 65 and ord(c) <= 90:
+			ciphertext += chr(ord(c) + key - 26) if ord(c) + key > 90 else chr(ord(c) + key)
+		elif ord(c) >= 97 and ord(c) <= 122:
+			ciphertext += chr(ord(c) + key - 26) if ord(c) + key > 122 else chr(ord(c) + key)
+		else:
+			ciphertext += c
+	return ciphertext
 '''
 10. Take 10 numbers as input from the user and store all the even numbers in a file called even.txt and
 the odd numbers in a file called odd.txt.
@@ -228,7 +287,14 @@ the odd numbers in a file called odd.txt.
 param: none, from the keyboard
 return: nothing
 '''
-#def evenAndOdds():
+def evenAndOdds():
+	numbers = [int(input()) for x in range(10)]
+	with open("even.txt", "w") as e, open("odd.txt", "w") as o:
+		for n in numbers:
+			if n % 2 == 0:
+				e.write("{}\n".format(n))
+			else:
+				o.write("{}\n".format(n))
 
 if __name__ == "__main__":
     main()
