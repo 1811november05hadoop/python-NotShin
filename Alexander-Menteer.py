@@ -38,7 +38,6 @@ Happy Scripting!
 Use the main function for testing purposes and to show me results for all functions.
 '''
 def main():
-
 	print("\nQuestion 1")
 	print("----------")
 	print(reverse(""))
