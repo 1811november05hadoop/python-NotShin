@@ -127,6 +127,7 @@ return: str
 '''
 def reverse(string : str):
 	return string[::-1]
+
 '''
 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
 Acronyms)! Help generate some jargon by writing a program that converts a
@@ -137,6 +138,7 @@ return: str
 '''
 def acronym(phrase : str):
 	return "".join(word[0].upper() for word in phrase.replace("-", " ").split(" "))
+
 '''
 3. Determine if a triangle is equilateral, isosceles, or scalene. An
 equilateral triangle has all three sides the same length. An isosceles
@@ -186,6 +188,7 @@ return: bool
 '''
 def armstrong(number : int):
 	return number == sum([pow((number // pow(10, i) - number // pow(10, i + 1) * 10), len(str(number))) for i in range(len(str(number)), -1, -1)])
+
 '''
 6. Compute the prime factors of a given natural number.
 
@@ -206,6 +209,7 @@ def primeFactors(number: int):
 		else:
 			factor += 1
 	return factors
+
 '''
 7. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
 gramma, "every letter") is a sentence using every letter of the alphabet at
@@ -224,6 +228,7 @@ def pangram(sentence : str):
 		if chr(x) not in sentence.strip(" ").lower():
 			return False
 	return True
+
 '''
 8. Sort list of integers.
 f([2,4,5,1,3,1]) = [1,1,2,3,4,5]
@@ -241,6 +246,7 @@ def sort(numbers: list):
 		sortedList.append(min(numbers))
 		numbers.remove(min(numbers))
 	return sortedList
+
 '''
 9. Create an implementation of the rotational cipher, also sometimes called
 the Caesar cipher.
@@ -280,6 +286,7 @@ def rotate(key: int, string: str):
 		else:
 			ciphertext += c
 	return ciphertext
+
 '''
 10. Take 10 numbers as input from the user and store all the even numbers in a file called even.txt and
 the odd numbers in a file called odd.txt.
